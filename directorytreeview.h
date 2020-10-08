@@ -17,6 +17,7 @@ public:
     void readDirectory(const QString& dir_path);
 
 signals:
+    void sendData(const QFileInfo& data);
 
 protected:
     virtual void mouseDoubleClickEvent(QMouseEvent * event);

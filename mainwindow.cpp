@@ -5,9 +5,8 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-//    ui->tabWidget->setWrapMode(QPlainTextEdit::WidgetWidth);
-
     ui->setupUi(this);
+    connect(ui->treeView, SIGNAL(sendData(const QFileInfo&)), ui->tabWidget, SLOT(recieveData(const QFileInfo&)));
     ui->treeView->hide();
     ui->logWindow->hide();
 }
@@ -20,11 +19,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::setWrapMode(QPlainTextEdit::LineWrapMode mode){
     tab_mode = mode;
-//    ui->tabWidget->
-//    QList<TabNote *> all_tabs = ui->tabWidget->findChildren<TabNote *>();
-//    for(const auto& it : all_tabs){
-//        it->setWordWrapMode(mode);
-//    }
 }
 
 QPlainTextEdit::LineWrapMode MainWindow::get_WrapMode() const{

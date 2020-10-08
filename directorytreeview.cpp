@@ -26,6 +26,7 @@ void DirectoryTreeView::mouseDoubleClickEvent(QMouseEvent * event){
     qDebug() << "This happens on double click";
     QFileInfo *file = new QFileInfo(dynamic_cast<QFileSystemModel *>(model())->filePath(currentIndex()));
     qDebug() << file->filePath();
+    emit sendData(*file);
 //    this->readFile(file->filePath());
 }
 void DirectoryTreeView::onSingleClick()

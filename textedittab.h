@@ -16,9 +16,12 @@ public:
     void addFileTab();
     void changeWrapMode();
     void setWrapMode(QPlainTextEdit::LineWrapMode new_tab_mode);
-    void readFile(const QString& file_path);
+    void readFile(const QFileInfo& file_info);
 
 signals:
+
+public slots:
+    void recieveData(const QFileInfo& data);
 
 private:
     QPlainTextEdit::LineWrapMode tab_mode = QPlainTextEdit::LineWrapMode::WidgetWidth;
