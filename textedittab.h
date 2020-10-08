@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QTabWidget>
 #include <QTextEdit>
+#include <QLineEdit>
 #include "tabnote.h"
 #include <mainwindow.h>
 

@@ -36,8 +36,23 @@
         <enum>Qt::Vertical</enum>
        </property>
        <widget class="TextEditTab" name="tabWidget">
+        <property name="minimumSize">
+         <size>
+          <width>500</width>
+          <height>500</height>
+         </size>
+        </property>
         <property name="currentIndex">
          <number>-1</number>
+        </property>
+        <property name="tabsClosable">
+         <bool>true</bool>
+        </property>
+        <property name="movable">
+         <bool>false</bool>
+        </property>
+        <property name="tabBarAutoHide">
+         <bool>false</bool>
         </property>
        </widget>
        <widget class="QTextBrowser" name="logWindow"/>
@@ -82,7 +97,7 @@
     <property name="title">
      <string>Goto</string>
     </property>
-    <addaction name="actionGo_Back"/>
+    <addaction name="actionJump_Back"/>
     <addaction name="actionJump_Forward"/>
    </widget>
    <widget class="QMenu" name="menuPreferences">
@@ -169,7 +184,7 @@
     <string>Word Wrap</string>
    </property>
   </action>
-  <action name="actionGo_Back">
+  <action name="actionJump_Back">
    <property name="text">
     <string>Jump Back</string>
    </property>

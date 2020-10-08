@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     connect(ui->treeView, SIGNAL(sendData(const QFileInfo&)), ui->tabWidget, SLOT(recieveData(const QFileInfo&)));
+    connect(ui->tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(closeTab(int)));
     ui->treeView->hide();
     ui->logWindow->hide();
 }
@@ -24,6 +25,30 @@ void MainWindow::setWrapMode(QPlainTextEdit::LineWrapMode mode){
 QPlainTextEdit::LineWrapMode MainWindow::get_WrapMode() const{
     return tab_mode;
 }
+
+void MainWindow::moveCursor(QTextCursor::MoveOperation op){
+    if(ui->tabWidget->count() != 0){
+        TabNote* note = dynamic_cast<TabNote *>(ui->tabWidget->currentWidget());
+        //    qDebug() << note->toPlainText();
+        note->moveCursor(op);
+    }
+}
+
+void MainWindow::closeTab(const int& index)
+{
+    if (index == -1) {
+        return;
+    }
+
+    QWidget* tabItem = ui->tabWidget->widget(index);
+    // Removes the tab at position index from this stack of widgets.
+    // The page widget itself is not deleted.
+    ui->tabWidget->removeTab(index);
+
+    delete(tabItem);
+    tabItem = nullptr;
+}
+
 
 //Signals
 
@@ -57,4 +82,14 @@ void MainWindow::on_actionWord_Wrap_triggered()
     else
         ui->tabWidget->setWrapMode(QPlainTextEdit::NoWrap);
 
+}
+
+void MainWindow::on_actionJump_Back_triggered()
+{
+    moveCursor(QTextCursor::Start);
+}
+
+void MainWindow::on_actionJump_Forward_triggered()
+{
+    moveCursor(QTextCursor::End);
 }

@@ -24,6 +24,10 @@ public:
     void setWrapMode(QPlainTextEdit::LineWrapMode mode);
     QPlainTextEdit::LineWrapMode get_WrapMode() const;
 
+    void moveCursor(QTextCursor::MoveOperation op);
+
+
+
 private slots:
     void on_actionAdd_new_note_triggered();
 
@@ -32,6 +36,12 @@ private slots:
     void on_actionLog_triggered();
 
     void on_actionWord_Wrap_triggered();
+
+    void on_actionJump_Back_triggered();
+
+    void on_actionJump_Forward_triggered();
+
+    void closeTab(const int& index);
 
 private:
     Ui::MainWindow *ui;

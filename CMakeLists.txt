@@ -27,6 +27,19 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
+set(SOURCES main.cpp
+    mainwindow.cpp
+    mainwindow.h
+    mainwindow.ui
+    directorytreeview.cpp
+    directorytreeview.h
+    textedittab.cpp
+    textedittab.h
+    tabnote.cpp
+    tabnote.h)
+
+qt5_add_resources(SOURCES resources.qrc)
+
 if(ANDROID)
   add_library(utext SHARED
     main.cpp
@@ -36,16 +49,7 @@ if(ANDROID)
   )
 else()
   add_executable(utext
-    main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    mainwindow.ui
-    directorytreeview.cpp
-    directorytreeview.h
-    textedittab.cpp
-    textedittab.h
-    tabnote.cpp
-    tabnote.h
+    ${SOURCES}
   )
 endif()
 
